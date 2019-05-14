@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserList</title>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
+</head>
+<body class="container">
+<h1>用户列表</h1>
+<div class="with:40%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>password</th>
+            <th>age</th>
+            <th>details</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${userInfo}">
+            <th scope="row" th:text="${user.getUserid()}">2</th>
+            <th th:text="${user.getUsername()}">leo</th>
+            <th th:text="${user.getPassword()}">pwd</th>
+            <th th:text="${user.getAge()}">13</th>
+            <th><a th:href="@{/user/findById(id=${user.getUserid()})}" >查看</a></th>
+            <th><a th:href="@{/user/deleteById(id=${user.getUserid()})}" >删除</a></th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toAdd" th:href="@{/user/toAdd}" class="btn btn-info">add</a>
+    </div>
+</div>
+<script th:src="@{~/static/js/bootstrap.js}"></script>
+<script th:src="@{~/static/js/bootstrap.min.js}"></script>
+</body>
+</html>

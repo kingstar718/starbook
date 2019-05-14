@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserList</title>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
+</head>
+<body class="container">
+<h1>书评内容</h1>
+<div>
+    <h3 th:text="${bookReview.getReviewname()}">2</h3>
+    <h4 th:text="${bookReview.getReviewauthor()}">leo</h4>
+    <h4 th:text="${bookReview.getReviewtime()}">pwd</h4>
+    <p class="text-center" th:text="${bookReview.getReviewcontent()}">13</p>
+</div>
+
+<script th:src="@{~/static/js/bootstrap.js}"></script>
+<script th:src="@{~/static/js/bootstrap.min.js}"></script>
+</body>
+</html>

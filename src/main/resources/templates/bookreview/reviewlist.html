@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserList</title>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
+</head>
+<body class="container">
+<div class="row">
+    <div class="col-md-4">.col-md-4</div>
+    <div class="col-md-4">.col-md-4</div>
+    <div class="col-md-4">.col-md-4</div>
+</div>
+<h1>书评列表</h1>
+<div class="with:40%">
+    <table class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>review name</th>
+            <th>author name</th>
+            <th>book name</th>
+            <th>time</th>
+            <th>review content</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bookReview: ${bookReviews}">
+            <th scope="row" th:text="${bookReview.getReviewid()}">2</th>
+            <th th:text="${bookReview.getReviewname()}">leo</th>
+            <th th:text="${bookReview.getReviewauthor()}">pwd</th>
+            <th th:text="'《'+${bookReview.getBookname()}+'》'">13</th>
+            <th th:text="${bookReview.getReviewtime()}"></th>
+            <th><a class="btn btn-default" th:href="@{/bookreview/review(id=${bookReview.getReviewid()})}">content</a></th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script th:src="@{~/static/js/bootstrap.js}"></script>
+<script th:src="@{~/static/js/bootstrap.min.js}"></script>
+</body>
+</html>
