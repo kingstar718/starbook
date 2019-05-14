@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
+</head>
+<body class="container">
+<div>
+    <div th:replace="layout/header::header"></div>
+</div>
+<div>
+    <div class="jumbotron">
+        <h1>StarBook<small>design by kingstar</small></h1>
+        <p>为您提供有用的知识</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+    </div>
+</div>
+</body>
+</html>

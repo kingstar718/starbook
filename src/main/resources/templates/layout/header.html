@@ -3,10 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>header</title>
+        <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
+        <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
     </head>
     <body>
         <footer th:fragment="header">
-            <h2>我是 头部</h2>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a th:href="@{/index}">Home</a></li>
+                <li role="presentation"><a th:href="@{/user/list}">用户列表</a></li>
+                <li role="presentation"><a th:href="@{/bookreview/list}">书评列表</a></li>
+                <li role="presentation"><a href="#">作者信息</a></li>
+            </ul>
         </footer>
     </body>
 </html>

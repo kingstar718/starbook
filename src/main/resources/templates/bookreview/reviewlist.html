@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>UserList</title>
@@ -7,10 +7,8 @@
     <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
 </head>
 <body class="container">
-<div class="row">
-    <div class="col-md-4">.col-md-4</div>
-    <div class="col-md-4">.col-md-4</div>
-    <div class="col-md-4">.col-md-4</div>
+<div>
+    <div th:replace="layout/header::header"></div>
 </div>
 <h1>书评列表</h1>
 <div class="with:40%">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>UserList</title>
@@ -7,8 +7,23 @@
     <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
 </head>
 <body class="container">
-<h1>用户列表</h1>
-<div class="with:40%">
+<div>
+    <div th:replace="layout/header::header"></div>
+</div>
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h3>用户列表</h3></div>
+    <div class="panel-body">
+        <p>用于测试的用户列表，包含了用户基本信息列表显示，具体信息查看，添加、删除用户等功能</p>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><a th:href="@{/user/toAdd}" class="btn btn-info">add</a><a>  </a><a type="reset" class="btn btn-info">reset</a></li>
+    </ul>
+    <!-- Table -->
+    <!--<table class="table">
+        ...
+    </table>-->
+
     <table class="table table-hover">
         <thead>
         <tr>
@@ -32,11 +47,8 @@
         </tbody>
     </table>
 </div>
-<div class="form-group">
-    <div class="col-sm-2 control-label">
-        <a href="/toAdd" th:href="@{/user/toAdd}" class="btn btn-info">add</a>
-    </div>
-</div>
+
+
 <script th:src="@{~/static/js/bootstrap.js}"></script>
 <script th:src="@{~/static/js/bootstrap.min.js}"></script>
 </body>
