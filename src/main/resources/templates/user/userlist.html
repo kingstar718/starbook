@@ -5,6 +5,7 @@
     <title>UserList</title>
     <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
     <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
+
 </head>
 <body class="container">
 <div>
@@ -17,7 +18,13 @@
         <p>用于测试的用户列表，包含了用户基本信息列表显示，具体信息查看，添加、删除用户等功能</p>
     </div>
     <ul class="list-group">
-        <li class="list-group-item"><a th:href="@{/user/toAdd}" class="btn btn-default">add</a><a>  </a><a type="reset" class="btn btn-default">reset</a></li>
+        <li class="list-group-item">
+            <a th:href="@{/user/toAdd}" class="btn btn-default">add</a>
+            <a>  </a>
+            <a type="reset" class="btn btn-default">reset</a>
+            <a>  </a>
+
+        </li>
     </ul>
 
     <table class="table table-hover">
@@ -46,8 +53,9 @@
 <div>
     <div th:replace="layout/footer::footer"></div>
 </div>
-
+<script th:src="@{~/static/js/jquery-3.4.1.min.js}"></script>
 <script th:src="@{~/static/js/bootstrap.js}"></script>
 <script th:src="@{~/static/js/bootstrap.min.js}"></script>
+<script th:src="@{~/static/js/modal.js}"></script>
 </body>
 </html>
