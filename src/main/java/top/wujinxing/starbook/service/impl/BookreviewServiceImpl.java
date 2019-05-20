@@ -1,9 +1,10 @@
-package top.wujinxing.starbook.service;
+package top.wujinxing.starbook.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.wujinxing.starbook.dao.BookReviewDao;
 import top.wujinxing.starbook.entity.BookReview;
+import top.wujinxing.starbook.service.BookreviewService;
 
 import java.util.List;
 

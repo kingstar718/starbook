@@ -1,4 +1,4 @@
-package top.wujinxing.starbook.service;
+package top.wujinxing.starbook.service.impl;
 
 import com.sun.org.apache.xerces.internal.util.AugmentationsImpl;
 import org.slf4j.Logger;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.wujinxing.starbook.dao.AuthorDao;
 import top.wujinxing.starbook.entity.AuthorInfo;
+import top.wujinxing.starbook.service.AuthorService;
 
 import java.util.List;
 
