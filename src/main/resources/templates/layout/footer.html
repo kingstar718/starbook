@@ -8,10 +8,10 @@
         <footer th:fragment="footer">
             <div>
                 <p class="text-center">
-                    <a>Desigin By KingStar</a>
+                    Desigin By KingStar
                 </p>
-                <p class="text-center">
-                    <a>2019年5月</a>
+                <p class="text-center"><!--时间显示-->
+                    [[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}]]
                 </p>
             </div>
         </footer>
