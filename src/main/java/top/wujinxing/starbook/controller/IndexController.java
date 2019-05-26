@@ -11,4 +11,9 @@ public class IndexController {
     public String toUserList(){
         return "index";
     }
+
+    @RequestMapping("/toMapService")
+    public String toMapService(){
+        return "map/mapService";
+    }
 }
