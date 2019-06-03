@@ -1,5 +1,7 @@
 package top.wujinxing.starbook.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import top.wujinxing.starbook.entity.UserInfo;
 
 import java.util.List;
@@ -18,4 +20,7 @@ public interface UserInfoService {
     public void deleteByUserid(Long userid);
 
     void insert(UserInfo userInfo);
+
+    //分页查询
+    Page<UserInfo> findByPage(Pageable pageable);
 }
