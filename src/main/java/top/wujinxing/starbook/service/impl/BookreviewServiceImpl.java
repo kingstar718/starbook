@@ -1,6 +1,8 @@
 package top.wujinxing.starbook.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import top.wujinxing.starbook.dao.BookReviewDao;
 import top.wujinxing.starbook.entity.BookReview;
@@ -27,5 +29,15 @@ public class BookreviewServiceImpl implements BookreviewService {
     @Override
     public BookReview findByReviewid(long reviewid) {
         return bookReviewDao.findByReviewid(reviewid);
+    }
+
+    /**
+     * 分页查询
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<BookReview> findPage(Pageable pageable) {
+        return bookReviewDao.findAll(pageable);
     }
 }

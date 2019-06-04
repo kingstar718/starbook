@@ -29,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="bookReview: ${bookReviews}">
+        <tr th:each="bookReview: ${page.content}">
             <th scope="row" th:text="${bookReview.getReviewid()}">2</th>
             <th th:text="${bookReview.getReviewname()}">leo</th>
             <th th:text="${bookReview.getReviewauthor()}">pwd</th>
@@ -39,6 +39,14 @@
         </tr>
         </tbody>
     </table>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a  class="btn-default" th:href="@{/bookreview/list(start=0)}">[首页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:if="${not page.isFirst()}" th:href="@{/bookreview/list(start=${page.number-1})}">[上页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:if="${not page.isLast()}" th:href="@{/bookreview/list(start=${page.number+1})}">[下页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:href="@{/bookreview/list(start=${page.totalPages-1})}">[末页]</a>
+        </li>
+    </ul>
 </div>
 <div>
     <div th:replace="layout/footer::footer"></div>

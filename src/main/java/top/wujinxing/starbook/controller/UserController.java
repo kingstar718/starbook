@@ -66,12 +66,13 @@ public class UserController {
     //分页
     @RequestMapping("/list")
     public String pageUser(@RequestParam(value = "start", defaultValue = "0") Integer start,
-                           @RequestParam(value = "limit", defaultValue = "10") Integer limit,
+                           @RequestParam(value = "size", defaultValue = "10") Integer size,
 
                            Model model){
         start = start <0 ? 0:start;
-        Sort sort = new Sort(Sort.DEFAULT_DIRECTION, "userid");
-        Pageable pageable = new PageRequest(start, limit, sort);
+        //Sort sort = new Sort(Sort.DEFAULT_DIRECTION, "userid");
+        //Pageable pageable = new PageRequest(start, size, sort);  //方法过时.下面是推荐写法
+        Pageable pageable = PageRequest.of(start, size, Sort.by(Sort.Direction.ASC, "userid"));
         Page<UserInfo>  page = userInfoService.findByPage(pageable);
         model.addAttribute("page", page);
         return "user/userlist";
