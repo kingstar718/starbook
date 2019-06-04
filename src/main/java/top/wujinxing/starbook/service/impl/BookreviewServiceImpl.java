@@ -28,7 +28,21 @@ public class BookreviewServiceImpl implements BookreviewService {
 
     @Override
     public BookReview findByReviewid(long reviewid) {
-        return bookReviewDao.findByReviewid(reviewid);
+        BookReview bookReview = bookReviewDao.findByReviewid(reviewid);
+        String rs = bookReview.getReviewcontent();
+        //System.out.println(rs);
+        String[] s = rs.split("。");
+        StringBuffer rc = new StringBuffer();
+        for (String c: s
+             ) {
+            StringBuffer sb = new StringBuffer(c);
+            sb.insert(0,"<p>");
+            sb.append("。</p>");
+            rc.append(sb);  //更改逻辑,将文字内容以句号结尾的算分行, 重新设置内容, 前端thymeleaf使用th:utext解析字符串内的标签
+        }
+        bookReview.setReviewcontent(String.valueOf(rc));
+        //System.out.println(rs);
+        return bookReview;
     }
 
     /**
