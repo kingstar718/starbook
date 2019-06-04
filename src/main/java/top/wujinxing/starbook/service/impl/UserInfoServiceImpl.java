@@ -1,6 +1,8 @@
 package top.wujinxing.starbook.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.wujinxing.starbook.dao.UserInfoDao;
@@ -39,5 +41,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public void insert(UserInfo userInfo) {
         userInfoDao.save(userInfo);
+    }
+
+    @Override
+    public Page<UserInfo> findByPage(Pageable pageable) {
+        return userInfoDao.findAll(pageable);
     }
 }
