@@ -18,9 +18,9 @@
     </div>
 
     <ul class="list-group">
-        <li class="list-group-item" th:text="${bookReview.getReviewname()}">Cras justo odio</li>
-        <li class="list-group-item" th:text="${bookReview.getReviewauthor()}">Dapibus ac facilisis in</li>
-        <li class="list-group-item" th:text="${bookReview.getReviewtime()}">Morbi leo risus</li>
+        <li class="list-group-item" th:text="${bookReview.getReviewname()}">书评名称</li>
+        <li class="list-group-item" th:text="${bookReview.getReviewauthor()}">书评作者</li>
+        <li class="list-group-item" th:text="${bookReview.getReviewtime()}">书评内容</li>
     </ul>
     <div class="panel-body">
         <p class="text-center" th:utext="${bookReview.getReviewcontent()}">13</p>

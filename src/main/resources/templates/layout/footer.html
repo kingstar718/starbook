@@ -10,10 +10,7 @@
                 <p class="text-center">
                     Desigin By KingStar
                 </p>
-                <p class="text-center"><!--时间显示-->
-                    <!--[[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd hh:mm:ss')}]]-->
-                    2019年5月
-                </p>
+                <p class="text-center" th:text="${#dates.createNow().toLocaleString()}">2019年5月</p>
             </div>
         </footer>
     </body>
