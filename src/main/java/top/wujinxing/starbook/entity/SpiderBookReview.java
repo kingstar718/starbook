@@ -1,11 +1,14 @@
 package top.wujinxing.starbook.entity;
 
+import java.io.Serializable;
+
 /**
  * @author wujinxing
  * date 2019 2019/6/11 10:20
  * description
  */
-public class SpiderBookReview{
+public class SpiderBookReview implements Serializable {
+    private Integer reviewId;
     private String bookName;
     private String bookReviewAuthor;
     private String bookReviewName;
@@ -27,6 +30,14 @@ public class SpiderBookReview{
         this.isUseless = isUseless;
         this.reviewTime = reviewTime;
         this.reviewAddress = reviewAddress;
+    }
+
+    public Integer getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Integer reviewId) {
+        this.reviewId = reviewId;
     }
 
     public String getBookName() {

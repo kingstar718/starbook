@@ -25,18 +25,18 @@
             <th>作者</th>
             <th>评分</th>
             <th>评论数</th>
-            <th>地址</th>
-            <th>图片</th>
+            <!--<th>地址</th>
+            <th>图片</th>-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="book: ${page.content}">
-            <th scope="row" th:text="${book.getBookName()}" th:href="${book.getBookAddress()}">2</th>
+            <th ><a th:text="${book.getBookName()}" th:href="${book.getBookAddress()}"></a></th>
             <th th:text="${book.getBookAuthor()}">leo</th>
             <th th:text="${book.getBookScore()}">pwd</th>
             <th th:text="${book.getBookEvaluate()}">13</th>
-            <th><a th:href="${book.getBookAddress()}">地址</a></th>
-            <th><a th:href="${book.getBookImg()}">图片地址</a></th>
+            <!--<th><a th:href="${book.getBookAddress()}">地址</a></th>
+            <th><a th:href="${book.getBookImg()}">图片地址</a></th>-->
         </tr>
         </tbody>
     </table>

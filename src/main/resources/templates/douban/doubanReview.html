@@ -21,22 +21,24 @@
     <table class="table table-hover">
         <thead>
         <tr>
+            <th>书评ID</th>
             <th>书评名</th>
             <th>书评作者</th>
             <th>书名</th>
+            <th>评论时间</th>
             <th>有用</th>
             <th>没用</th>
-            <th>书评地址</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="review: ${bookReviews}">
+            <th th:text="${review.getReviewId()}"></th>
             <th ><a th:text="${review.getBookReviewName()}" th:href="${review.getReviewAddress()}"></a></th>
             <th th:text="${review.getBookReviewAuthor()}">leo</th>
             <th th:text="${review.getBookName()}">pwd</th>
+            <th th:text="${review.getReviewTime()}">sss</th>
             <th th:text="${review.getIsUseful()}">13</th>
             <th th:text="${review.getIsUseless()}">13</th>
-            <th><a th:href="${review.getReviewAddress()}">地址</a></th>
         </tr>
         </tbody>
     </table>

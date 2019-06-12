@@ -1,9 +1,11 @@
 package top.wujinxing.starbook.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.*;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.wujinxing.starbook.dao.DoubanBookDao;
@@ -13,6 +15,7 @@ import top.wujinxing.starbook.service.DoubanBookService;
 import top.wujinxing.starbook.utils.DoubanBookReview;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wujinxing
@@ -23,8 +26,14 @@ import java.util.List;
 @Transactional
 public class DoubanBookServiceImpl implements DoubanBookService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DoubanBookServiceImpl.class);
+
     @Autowired
     private DoubanBookDao doubanBookDao;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
 
     @Override
     public Page<DoubanBook> findPage(Pageable pageable) {
@@ -61,9 +70,29 @@ public class DoubanBookServiceImpl implements DoubanBookService {
         return doubanBookReview.getFirstList();
     }
 
+    /**
+     * 使用redis缓存爬虫获取的信息
+     * @param num
+     * @return List<SpiderBookReview>
+     */
     @Override
     public List<SpiderBookReview> getReviewByNum(Integer num) {
-        return doubanBookReview.getListByNum(num);
+        String key = num.toString();
+        // 无法使用 StringRedisTemplate, 会导致下面的语句报错
+        ValueOperations<String, List> operations = redisTemplate.opsForValue();
+        boolean hasKey = redisTemplate.hasKey(key);
+        List<SpiderBookReview> list = null;
+        if (hasKey){
+            list = operations.get(key);
+            LOGGER.info("存缓存中获取了书评信息!");
+            return list;
+        }
+        // 缓存中没有, 使用爬虫获取
+        list = doubanBookReview.getListByNum(num);
+        // 将得到的数据存入redis
+        operations.set(num.toString(), list,10, TimeUnit.MINUTES);//设置为10分钟的有效期
+        LOGGER.info("爬虫获取, 并存入缓存, 缓存值为: " + operations.get(key));
+        return list;
     }
 
     @Override

@@ -100,7 +100,11 @@ public class DoubanBookReview {
             String isUseful = e.child(2).child(3).child(0).text(); //认为评论有用人数
             String isUseless = e.child(2).child(3).child(1).text();  //认为评论无用人数
             //String reviewTime = e.child(1).child(3).text(); //评论时间
+            String[] reTime = e.child(1).text().split(" ");
+            String reviewTime = reTime[1] + " " + reTime[2];
             String reviewAddress = e.child(2).child(0).child(0).attr("href"); //书评地址
+
+            String reviewId = e.attr("id"); //书评id
 
             //String reviewContent = getReview(reviewAddress); //书评实际内容
             //SpiderBookReview sbr = new SpiderBookReview(bookName, bookReviewAuthor, bookReviewName, bookReviewContent, isUseful, isUseless, reviewTime, reviewAddress);
@@ -110,8 +114,9 @@ public class DoubanBookReview {
             sbr.setBookReviewContent(bookReviewContent);
             sbr.setIsUseful(isUseful);
             sbr.setIsUseless(isUseless);
-            //sbr.setReviewTime(reviewTime);
+            sbr.setReviewTime(reviewTime);
             sbr.setReviewAddress(reviewAddress);
+            sbr.setReviewId(Integer.parseInt(reviewId));
             list.add(sbr);
         }
 
