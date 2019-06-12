@@ -5,7 +5,7 @@ package top.wujinxing.starbook.entity;
  * date 2019 2019/6/11 10:20
  * description
  */
-public class SpiderBookReview extends BookReview {
+public class SpiderBookReview{
     private String bookName;
     private String bookReviewAuthor;
     private String bookReviewName;

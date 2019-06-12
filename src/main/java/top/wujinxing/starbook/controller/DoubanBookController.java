@@ -10,12 +10,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import top.wujinxing.starbook.entity.DoubanBook;
+import top.wujinxing.starbook.entity.SpiderBookReview;
 import top.wujinxing.starbook.service.DoubanBookService;
+
+import java.util.List;
 
 /**
  * @author wujinxing
@@ -55,4 +55,31 @@ public class DoubanBookController {
         model.addAttribute("page", page);
         return "douban/book250";
     }
+
+    //书评展示
+    @GetMapping("/bookReviewList")
+    @ResponseBody
+    public List<SpiderBookReview> bookReviewList(){
+        return doubanBookService.getListBookReview();
+    }
+
+    @GetMapping("/bookFirstReviewList")
+    @ResponseBody
+    public List<SpiderBookReview> bookReviews(){
+        return doubanBookService.getFirstList();
+    }
+
+    @GetMapping("/getFirstReview")
+    public String getFirstReview(Model model){
+        List<SpiderBookReview> bookReviews = doubanBookService.getFirstList();
+        model.addAttribute("bookReviews", bookReviews);
+        return "douban/doubanReview";
+    }
+
+    /*@GetMapping("/list")
+    public String bookReviewList(Model model){
+        List<BookReview> bookReviews = bookreviewService.getBookReviewList();
+        model.addAttribute("bookReviews", bookReviews);
+        return "bookreview/reviewlist";
+    }*/
 }

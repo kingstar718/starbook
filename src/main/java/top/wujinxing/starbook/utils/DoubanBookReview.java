@@ -10,30 +10,51 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.junit.Test;
+import org.springframework.stereotype.Component;
 import top.wujinxing.starbook.entity.SpiderBookReview;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import static org.junit.Assert.*;
 /**
  * @author wujinxing
  * date 2019 2019/6/11 10:13
  * description 豆瓣书评评论
  */
-public class getDoubanBookReview {
+@Component
+public class DoubanBookReview {
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(getReview("https://book.douban.com/review/9593753/"));
+    /*private getDoubanBookReview(){
 
+    }*/
+
+    public List<SpiderBookReview> getList(){
+        try {
+            return getAllBookReview();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    public List<SpiderBookReview> getFirstList(){
+        String url = "https://book.douban.com/review/best/?start=0";
+        List<SpiderBookReview> list = null;
+        try {
+            list = getBookReview(url);
+            return list;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     private static List<SpiderBookReview> getAllBookReview() throws IOException, InterruptedException {
         String url = "https://book.douban.com/review/best/?start=";
         List<SpiderBookReview> list = new ArrayList<>();
         for(int i=0; i<10; i++){
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             String url1 = String.format("%s%s", url, String.valueOf(i * 20));
             System.out.println(url1);
             List<SpiderBookReview> list1 = getBookReview(url1);
@@ -70,12 +91,12 @@ public class getDoubanBookReview {
             //String reviewTime = e.child(1).child(3).text(); //评论时间
             String reviewAddress = e.child(2).child(0).child(0).attr("href"); //书评地址
 
-            String reviewContent = getReview(reviewAddress); //书评实际内容
+            //String reviewContent = getReview(reviewAddress); //书评实际内容
             //SpiderBookReview sbr = new SpiderBookReview(bookName, bookReviewAuthor, bookReviewName, bookReviewContent, isUseful, isUseless, reviewTime, reviewAddress);
             sbr.setBookName(bookName);
             sbr.setBookReviewAuthor(bookReviewAuthor);
             sbr.setBookReviewName(bookReviewName);
-            sbr.setBookReviewContent(reviewContent);
+            sbr.setBookReviewContent(bookReviewContent);
             sbr.setIsUseful(isUseful);
             sbr.setIsUseless(isUseless);
             //sbr.setReviewTime(reviewTime);
@@ -87,15 +108,11 @@ public class getDoubanBookReview {
         return list;
 
     }
-
+    //书评实际内容
     private static String getReview(String url) throws IOException {
-
         //"https://book.douban.com/review/9593753/"
         Document doc = Jsoup.connect(url).get();
-        //System.out.println(doc);
         Elements s = doc.getElementsByClass("review-content clearfix");
-        //Element e = doc.getElementById("review-content");
-        //System.out.println(e);
         String reviewContent = "";
         for (Element e:s
         ) {
