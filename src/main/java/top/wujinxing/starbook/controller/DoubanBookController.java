@@ -70,16 +70,22 @@ public class DoubanBookController {
     }
 
     @GetMapping("/getFirstReview")
-    public String getFirstReview(Model model){
-        List<SpiderBookReview> bookReviews = doubanBookService.getFirstList();
+    public String getFirstReview(@RequestParam(value = "num", defaultValue = "0")Integer num,
+                                 Model model){
+        num = num <0 ? 0: num;
+        num = num >9 ? 9: num;
+        List<SpiderBookReview> bookReviews = doubanBookService.getReviewByNum(num);
         model.addAttribute("bookReviews", bookReviews);
         return "douban/doubanReview";
     }
 
-    /*@GetMapping("/list")
-    public String bookReviewList(Model model){
-        List<BookReview> bookReviews = bookreviewService.getBookReviewList();
-        model.addAttribute("bookReviews", bookReviews);
-        return "bookreview/reviewlist";
-    }*/
+    @GetMapping("/reviewPage")
+    public String reviewPage(@RequestParam(value = "start", defaultValue = "0") Integer start,
+                             @RequestParam(value = "size", defaultValue = "10") Integer size,
+                             Model model){
+        start = start <0 ? 0:start;
+        Page<SpiderBookReview> page = doubanBookService.findReviewPage(start, size);
+        model.addAttribute("page", page);
+        return "douban/allReview";
+    }
 }

@@ -30,8 +30,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="review: ${bookReviews}">
-            <th ><a th:text="${review.getBookReviewName()}" th:href="${review.getReviewAddress()}"></a></th>
+        <tr th:each="review: ${page.content}">
+            <th scope="row" th:text="${review.getBookReviewName()}">2</th>
             <th th:text="${review.getBookReviewAuthor()}">leo</th>
             <th th:text="${review.getBookName()}">pwd</th>
             <th th:text="${review.getIsUseful()}">13</th>
@@ -42,16 +42,10 @@
     </table>
     <ul class="list-group">
         <li class="list-group-item">
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=0)}">[首页]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=1)}">[2]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=2)}">[3]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=3)}">[4]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=4)}">[5]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=5)}">[6]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=5)}">[7]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=7)}">[8]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=8)}">[9]</a>&nbsp;&nbsp;
-            <a  class="btn-default" th:href="@{/doubanbook/getFirstReview(num=9)}">[末页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:href="@{/doubanbook/reviewPage(start=0)}">[首页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:if="${not page.isFirst()}" th:href="@{/doubanbook/reviewPage(start=${page.number-1})}">[上页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:if="${not page.isLast()}" th:href="@{/doubanbook/reviewPage(start=${page.number+1})}">[下页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:href="@{/doubanbook/reviewPage(start=${page.totalPages-1})}">[末页]</a>
         </li>
     </ul>
 </div>

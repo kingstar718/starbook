@@ -49,6 +49,17 @@ public class DoubanBookReview {
         }
         return list;
     }
+    public List<SpiderBookReview> getListByNum(int num){
+        String url = "https://book.douban.com/review/best/?start=";
+        String url1 = String.format("%s%s", url, String.valueOf(num * 20));
+        List<SpiderBookReview> list = null;
+        try {
+            list = getBookReview(url1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     private static List<SpiderBookReview> getAllBookReview() throws IOException, InterruptedException {
         String url = "https://book.douban.com/review/best/?start=";

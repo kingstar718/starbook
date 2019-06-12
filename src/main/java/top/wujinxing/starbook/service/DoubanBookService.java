@@ -21,4 +21,7 @@ public interface DoubanBookService  {
     List<SpiderBookReview> getListBookReview();
 
     List<SpiderBookReview> getFirstList();
+    List<SpiderBookReview> getReviewByNum(Integer num);
+
+    Page<SpiderBookReview> findReviewPage(int start, int size);
 }

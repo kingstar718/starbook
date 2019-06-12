@@ -1,9 +1,9 @@
 package top.wujinxing.starbook.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.wujinxing.starbook.dao.DoubanBookDao;
@@ -59,5 +59,19 @@ public class DoubanBookServiceImpl implements DoubanBookService {
     @Override
     public List<SpiderBookReview> getFirstList() {
         return doubanBookReview.getFirstList();
+    }
+
+    @Override
+    public List<SpiderBookReview> getReviewByNum(Integer num) {
+        return doubanBookReview.getListByNum(num);
+    }
+
+    @Override
+    public Page<SpiderBookReview> findReviewPage(int start, int size) {
+        Pageable pageable = PageRequest.of(start, size, Sort.by(Sort.Direction.ASC, "isUseful"));
+        List<SpiderBookReview> list = doubanBookReview.getList();
+        long totalCharacters = 10;
+        Page<SpiderBookReview> page = new PageImpl<>(list, pageable, totalCharacters);
+        return page;
     }
 }
