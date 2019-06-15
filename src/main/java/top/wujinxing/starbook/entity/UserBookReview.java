@@ -8,12 +8,22 @@ import java.util.Date;
  */
 @Entity
 public class UserBookReview {
+    private Integer reviewId;
     private Integer userId;
     private String userName;
     private String userEmail;
     private Date reviewTime;
     private String reviewContent;
     private Integer bookId;
+
+
+    public Integer getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Integer reviewId) {
+        this.reviewId = reviewId;
+    }
 
     public Integer getUserId() {
         return userId;

@@ -21,21 +21,21 @@ public class UserBookReviewServiceImpl implements UserBookReviewService {
 
     @Override
     public UserBookReview findById(Integer reviewId) {
-        return null;
+        return userBookReviewDao.findByReviewId(reviewId);
     }
 
     @Override
     public UserBookReview addBookReview(UserBookReview userBookReview) {
-        return null;
+        return userBookReviewDao.save(userBookReview);
     }
 
     @Override
     public UserBookReview updateBookReview(UserBookReview userBookReview) {
-        return null;
+        return userBookReviewDao.save(userBookReview);
     }
 
     @Override
     public UserBookReview deleteBookReviewById(Integer reviewId) {
-        return null;
+        return userBookReviewDao.deleteByReviewId(reviewId);
     }
 }
