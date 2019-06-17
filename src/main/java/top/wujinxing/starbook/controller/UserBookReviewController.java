@@ -13,5 +13,7 @@ public class UserBookReviewController {
     @Autowired
     private UserBookReviewService userBookReviewService;
 
-    
+    public String list(){
+        return null;
+    }
 }
