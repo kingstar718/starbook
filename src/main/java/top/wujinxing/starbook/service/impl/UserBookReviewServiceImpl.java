@@ -2,12 +2,14 @@ package top.wujinxing.starbook.service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import top.wujinxing.starbook.dao.UserBookReviewDao;
 import top.wujinxing.starbook.entity.UserBookReview;
 import top.wujinxing.starbook.service.UserBookReviewService;
 
 import java.util.List;
 
+@Service
 public class UserBookReviewServiceImpl implements UserBookReviewService {
 
     @Autowired
