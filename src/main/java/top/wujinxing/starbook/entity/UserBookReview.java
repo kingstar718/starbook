@@ -1,13 +1,17 @@
 package top.wujinxing.starbook.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * 用户评论内容
  */
 @Entity
+@Table(name = "userbookreview")
 public class UserBookReview {
+    @Id
     private Integer reviewId;
     private Integer userId;
     private String userName;
