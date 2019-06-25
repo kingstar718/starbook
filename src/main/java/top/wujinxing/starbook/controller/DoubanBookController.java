@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import top.wujinxing.starbook.entity.BookSimpleReview;
 import top.wujinxing.starbook.entity.DoubanBook;
 import top.wujinxing.starbook.entity.SpiderBookReview;
 import top.wujinxing.starbook.service.DoubanBookService;
@@ -87,5 +88,13 @@ public class DoubanBookController {
         Page<SpiderBookReview> page = doubanBookService.findReviewPage(start, size);
         model.addAttribute("page", page);
         return "douban/allReview";
+    }
+
+    @GetMapping("/simpleReview")
+    //@ResponseBody
+    public String simplePage(@RequestParam(value = "url") String url, Model model){
+        List<BookSimpleReview> list = doubanBookService.findFirstReview(url);
+        model.addAttribute("list", list);
+        return "douban/simpleReview";
     }
 }

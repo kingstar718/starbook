@@ -25,6 +25,7 @@
             <th>作者</th>
             <th>评分</th>
             <th>评论数</th>
+            <th>热门短评</th>
             <!--<th>地址</th>
             <th>图片</th>-->
         </tr>
@@ -35,6 +36,7 @@
             <th th:text="${book.getBookAuthor()}">leo</th>
             <th th:text="${book.getBookScore()}">pwd</th>
             <th th:text="${book.getBookEvaluate()}">13</th>
+            <th ><a th:href="@{/doubanbook/simpleReview(url=${book.getBookAddress()})}">点击</a></th>
             <!--<th><a th:href="${book.getBookAddress()}">地址</a></th>
             <th><a th:href="${book.getBookImg()}">图片地址</a></th>-->
         </tr>

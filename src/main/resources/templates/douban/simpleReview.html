@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div>
+    <div th:replace="layout/header::header"></div>
+</div>
+<div class="panel panel-default">
+    <ul class="list-group">
+        <li class="list-group-item" th:each="bsReview:${list}">
+            <div>
+                <a th:href="${bsReview.getUserAddress()}" th:text="${bsReview.getUserName()}"></a>
+            </div>
+            <div>
+                <span th:text="${bsReview.getUsefulNum()}"></span> <span>有用</span>
+                <p><span th:text="${bsReview.getContent()}"></span></p>
+            </div>
+        </li>
+    </ul>
+</div>
+<div>
+    <div th:replace="layout/footer::footer"></div>
+</div>
+</body>
+</html>

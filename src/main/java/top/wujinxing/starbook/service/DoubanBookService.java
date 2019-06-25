@@ -2,6 +2,7 @@ package top.wujinxing.starbook.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import top.wujinxing.starbook.entity.BookSimpleReview;
 import top.wujinxing.starbook.entity.DoubanBook;
 import top.wujinxing.starbook.entity.SpiderBookReview;
 
@@ -24,4 +25,6 @@ public interface DoubanBookService  {
     List<SpiderBookReview> getReviewByNum(Integer num);
 
     Page<SpiderBookReview> findReviewPage(int start, int size);
+
+    List<BookSimpleReview> findFirstReview(String url);
 }

@@ -9,9 +9,11 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.wujinxing.starbook.dao.DoubanBookDao;
+import top.wujinxing.starbook.entity.BookSimpleReview;
 import top.wujinxing.starbook.entity.DoubanBook;
 import top.wujinxing.starbook.entity.SpiderBookReview;
 import top.wujinxing.starbook.service.DoubanBookService;
+import top.wujinxing.starbook.utils.BookSimpleReviewUtils;
 import top.wujinxing.starbook.utils.DoubanBookReview;
 
 import java.util.List;
@@ -102,5 +104,20 @@ public class DoubanBookServiceImpl implements DoubanBookService {
         long totalCharacters = 10;
         Page<SpiderBookReview> page = new PageImpl<>(list, pageable, totalCharacters);
         return page;
+    }
+
+    @Autowired
+    BookSimpleReviewUtils bookSimpleReviewUtils;
+
+    /**
+     * 对特定的图书查找简评
+     * @param url
+     * @return
+     */
+    @Override
+    public List<BookSimpleReview> findFirstReview(String url) {
+        String url2 = url + "comments";
+        List<BookSimpleReview> reviewList = bookSimpleReviewUtils.getBookSimpleReview(url2);
+        return reviewList;
     }
 }
