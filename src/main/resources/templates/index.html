@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,8 +13,8 @@
 <div>
     <div class="jumbotron">
         <h1>StarBook<small>design by kingstar</small></h1>
-        <p>为您提供有用的知识</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        <p>搜寻豆瓣TOP250的图书与热门书评, 献给热爱读书的你</p>
+        <p><a class="btn btn-primary btn-lg" th:href="@{/doubanbook/list}" role="button">To Explore</a></p>
     </div>
 </div>
 <div>
