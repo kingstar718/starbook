@@ -92,9 +92,28 @@ public class DoubanBookController {
 
     @GetMapping("/simpleReview")
     //@ResponseBody
-    public String simplePage(@RequestParam(value = "url") String url, Model model){
-        List<BookSimpleReview> list = doubanBookService.findFirstReview(url);
+    public String simplePage(@RequestParam(value = "url") String url,
+                             @RequestParam(value = "p", defaultValue = "1")Integer p,
+                             Model model){
+        List<BookSimpleReview> list = doubanBookService.findFirstReview(url, p);
         model.addAttribute("list", list);
         return "douban/simpleReview";
+    }
+
+    @GetMapping("/simpleNewReview")
+    public String simpleNewPage(@RequestParam(value = "url") String url,
+                                @RequestParam(value = "p", defaultValue = "1")Integer p,
+                                Model model){
+        List<BookSimpleReview> list = doubanBookService.findNewReview(url, p);
+        model.addAttribute("list", list);
+        return "douban/simpleReview";
+    }
+
+    @GetMapping("/simpleNext")
+    @ResponseBody
+    public DoubanBook simpleNext(@RequestParam(value = "bookId")Integer bookId){
+        DoubanBook doubanBook = doubanBookService.findById(bookId);
+        System.out.println(doubanBook.toString());
+        return doubanBook;
     }
 }

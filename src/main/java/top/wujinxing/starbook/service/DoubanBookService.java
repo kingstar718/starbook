@@ -26,5 +26,11 @@ public interface DoubanBookService  {
 
     Page<SpiderBookReview> findReviewPage(int start, int size);
 
-    List<BookSimpleReview> findFirstReview(String url);
+    /**
+     * 查找书籍的简评
+     * @param url
+     * @return
+     */
+    List<BookSimpleReview> findFirstReview(String url, Integer p);
+    List<BookSimpleReview> findNewReview(String url, Integer p);
 }

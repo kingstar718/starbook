@@ -36,7 +36,10 @@
             <th th:text="${book.getBookAuthor()}">leo</th>
             <th th:text="${book.getBookScore()}">pwd</th>
             <th th:text="${book.getBookEvaluate()}">13</th>
-            <th ><a th:href="@{/doubanbook/simpleReview(url=${book.getBookAddress()})}">点击</a></th>
+            <th >
+                <a th:href="@{/doubanbook/simpleReview(url=${book.getBookAddress()})}">热门</a>
+                <a th:href="@{/doubanbook/simpleNewReview(url=${book.getBookAddress()})}">最新</a>
+            </th>
             <!--<th><a th:href="${book.getBookAddress()}">地址</a></th>
             <th><a th:href="${book.getBookImg()}">图片地址</a></th>-->
         </tr>

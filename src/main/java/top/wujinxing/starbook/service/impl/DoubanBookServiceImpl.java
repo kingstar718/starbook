@@ -115,8 +115,17 @@ public class DoubanBookServiceImpl implements DoubanBookService {
      * @return
      */
     @Override
-    public List<BookSimpleReview> findFirstReview(String url) {
-        String url2 = url + "comments";
+    public List<BookSimpleReview> findFirstReview(String url, Integer p) {
+        String url2 = url + "comments/hot?p=" + p;
+        //System.out.println(url2);
+        List<BookSimpleReview> reviewList = bookSimpleReviewUtils.getBookSimpleReview(url2);
+        return reviewList;
+    }
+
+    @Override
+    public List<BookSimpleReview> findNewReview(String url, Integer p) {
+        String url2 = url + "comments/new?p=" + p;
+        //System.out.println(url2);
         List<BookSimpleReview> reviewList = bookSimpleReviewUtils.getBookSimpleReview(url2);
         return reviewList;
     }

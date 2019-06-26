@@ -2,29 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>豆瓣图书简评</title>
     <link rel="stylesheet" th:href="@{~/static/css/bootstrap.css}"/>
     <link rel="stylesheet" th:href="@{~/static/css/bootstrap.min.css}"/>
 </head>
-<body>
+<body class="container">
+<!--页头-->
 <div>
     <div th:replace="layout/header::header"></div>
 </div>
+
 <div class="panel panel-default">
-    <ul class="list-group">
+    <div class="panel-heading">
+        <h3>简评内容</h3>
+    </div>
+
+    <ul class="list-group" >
         <li class="list-group-item" th:each="bsReview:${list}">
+            <span><a th:text="${bsReview.getUserName()}" th:href="${bsReview.getUserAddress()}"></a></span>
+            <span>    </span><span th:text="${bsReview.getUsefulNum()}"></span><span> 有用</span>
             <div>
-                <a th:href="${bsReview.getUserAddress()}" th:text="${bsReview.getUserName()}"></a>
-            </div>
-            <div>
-                <span th:text="${bsReview.getUsefulNum()}"></span> <span>有用</span>
-                <p><span th:text="${bsReview.getContent()}"></span></p>
+                <p th:text="${bsReview.getContent()}"></p>
             </div>
         </li>
+
     </ul>
+    <!--暂时不做分页和多个显示, 只搜集前20条数据-->
+    <!--<ul class="list-group">
+        <li class="list-group-item">
+            &lt;!&ndash;<a  class="btn-default" th:href="@{/doubanbook/simpleReview(url=${)}">[首页]</a>&nbsp;&nbsp;&ndash;&gt;
+            &lt;!&ndash;<a  class="btn-default" th:if="" th:href="@{/doubanbook/simpleReview(url=${book.getBookAddress()}+1)}">[上页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:if="" th:href="@{/doubanbook/list(start=${page.number+1})}">[下页]</a>&nbsp;&nbsp;
+            <a  class="btn-default" th:href="@{/doubanbook/list(start=${page.totalPages-1})}">[末页]</a>&ndash;&gt;
+        </li>
+    </ul>-->
 </div>
 <div>
     <div th:replace="layout/footer::footer"></div>
 </div>
+<script th:src="@{~/static/js/bootstrap.js}"></script>
+<script th:src="@{~/static/js/bootstrap.min.js}"></script>
 </body>
 </html>
